@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Contact
  *
- * @ORM\Table(name="contact")
+ * @ORM\Table(name="kiosk_contact")
  * @ORM\Entity(repositoryClass="Kiosk\UserBundle\Repository\ContactRepository")
  */
 class Contact extends Personne

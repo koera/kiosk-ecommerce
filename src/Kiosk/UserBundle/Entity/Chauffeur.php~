@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Chauffeur
  *
- * @ORM\Table(name="chauffeur")
+ * @ORM\Table(name="kiosk_chauffeur")
  * @ORM\Entity(repositoryClass="Kiosk\UserBundle\Repository\ChauffeurRepository")
  */
 class Chauffeur extends Personne

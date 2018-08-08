@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Adresse
  *
- * @ORM\Table(name="adresse")
+ * @ORM\Table(name="kiosk_adresse")
  * @ORM\Entity(repositoryClass="Kiosk\UserBundle\Repository\AdresseRepository")
  */
 class Adresse
@@ -167,5 +167,53 @@ class Adresse
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \Kiosk\UserBundle\Entity\Client $client
+     *
+     * @return Adresse
+     */
+    public function setClient(\Kiosk\UserBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \Kiosk\UserBundle\Entity\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Set zone
+     *
+     * @param \Kiosk\UserBundle\Entity\ZoneAdresse $zone
+     *
+     * @return Adresse
+     */
+    public function setZone(\Kiosk\UserBundle\Entity\ZoneAdresse $zone = null)
+    {
+        $this->zone = $zone;
+
+        return $this;
+    }
+
+    /**
+     * Get zone
+     *
+     * @return \Kiosk\UserBundle\Entity\ZoneAdresse
+     */
+    public function getZone()
+    {
+        return $this->zone;
     }
 }

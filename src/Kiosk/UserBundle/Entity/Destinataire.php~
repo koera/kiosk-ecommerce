@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Destinataire
  *
- * @ORM\Table(name="destinataire")
+ * @ORM\Table(name="kiosk_destinataire")
  * @ORM\Entity(repositoryClass="Kiosk\UserBundle\Repository\DestinataireRepository")
  */
 class Destinataire extends Personne

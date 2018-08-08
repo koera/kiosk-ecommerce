@@ -31,11 +31,11 @@
                                         align="center">
                                         <div>
                                             <h1 style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#333333;font-size:18px;font-weight:400;line-height:1.4;margin:0;padding:0"
-                                                align="center">Bonjour {{ user.username }}, Merci pour votre inscription sur
+                                                align="center">Bonjour {{user.username}}, Merci pour votre inscription sur
                                                 Kiosk.mg !</h1>
                                             <p>Pour commencer, cliquez sur le lien ci-dessous pour confirmer votre compte.</p>
                                             <div>
-                                                <a href=""
+                                                <a href="{{url('activate_account',{'token':user.activationToken})}}"
                                                    target="_blank">Confirmer votre compte</a>
                                             </div>
                                         </div>

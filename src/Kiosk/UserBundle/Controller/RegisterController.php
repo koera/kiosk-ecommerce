@@ -49,15 +49,44 @@ class RegisterController extends BaseController
 
             $user->setUsername($username)
                 ->setPassword($passwordEncoded)
+                ->setActive(false)
+                ->setActivationToken($this->getToken())
+                ->setActivationTokenDelay(strtotime("+3 days"))
                 ->setClient($client);
 
             $em->persist($user);
             $em->flush();
-            if(!is_null($email)){
-                $this->sendMailConfirmation('Confirmation account',$email,$user);
-            }
+            $message = (new \Swift_Message('Confirmation account'))
+                ->setFrom('no-reply@kiosk.mg')
+                ->setTo($request->get('email'))
+                ->setBody(
+                    $this->renderView('emails/registration.html.twig',['user'=>$user]),
+                    'text/html'
+            );
+            $this->get('mailer')->send($message);
             return $this->renderJson(['user'=>$user,'message'=>'insert ok']);
         }
     }
+
+    /**
+     * @param string $token
+     * @Route("/account/activate/{token}", name="activate_account")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function activateAction($token){
+        $em = $this->getDoctrine()->getManager();
+        /** @var Compte $user */
+        $user = $this->getDoctrine()->getRepository(Compte::class)
+            ->findOneBy(['activationToken'=>$token]);
+        if(!$user || (strtotime('now') > $user->getActivationTokenDelay())){
+            return $this->renderJson(['message'=>'token not found']);
+        }
+
+        $user->setActive(true);
+
+        return $this->renderJson(['user'=>$user,'message'=>'user activated']);
+
+    }
+
 
 }

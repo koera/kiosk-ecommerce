@@ -54,7 +54,7 @@ class Compte implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="string", length=32, nullable=true)
+     * @ORM\Column(name="token", type="string", unique=true, length=32, nullable=true)
      */
     private $token;
 
@@ -63,6 +63,25 @@ class Compte implements UserInterface
      * @ORM\Column(name="tokenExpired", type="boolean", nullable=true)
      */
     private $tokenExpired;
+
+
+    /**
+     * @var bool
+     * @ORM\Column(name="active", type="boolean", nullable=false)
+     */
+    private $active;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=254, unique=true, length=32, nullable=true)
+     */
+    private $activationToken;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $activationTokenDelay;
 
     /**
      * Get id
@@ -236,5 +255,77 @@ class Compte implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     *
+     * @return Compte
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Set activationToken
+     *
+     * @param string $activationToken
+     *
+     * @return Compte
+     */
+    public function setActivationToken($activationToken)
+    {
+        $this->activationToken = $activationToken;
+
+        return $this;
+    }
+
+    /**
+     * Get activationToken
+     *
+     * @return string
+     */
+    public function getActivationToken()
+    {
+        return $this->activationToken;
+    }
+
+    /**
+     * Set activationTokenDelay
+     *
+     * @param integer $activationTokenDelay
+     *
+     * @return Compte
+     */
+    public function setActivationTokenDelay($activationTokenDelay)
+    {
+        $this->activationTokenDelay = $activationTokenDelay;
+
+        return $this;
+    }
+
+    /**
+     * Get activationTokenDelay
+     *
+     * @return integer
+     */
+    public function getActivationTokenDelay()
+    {
+        return $this->activationTokenDelay;
     }
 }

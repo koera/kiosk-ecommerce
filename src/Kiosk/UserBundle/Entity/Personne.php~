@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Personne
  *
- * @ORM\Table(name="personne")
+ * @ORM\Table(name="kiosk_personne")
  * @ORM\Entity(repositoryClass="Kiosk\UserBundle\Repository\PersonneRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
@@ -28,21 +28,21 @@ class Personne
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=50)
+     * @ORM\Column(name="nom", type="string", length=50, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prenom", type="string", length=50)
+     * @ORM\Column(name="prenom", type="string", length=50, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="genre", type="string", length=10)
+     * @ORM\Column(name="genre", type="string", length=10, nullable=true)
      */
     private $genre;
 

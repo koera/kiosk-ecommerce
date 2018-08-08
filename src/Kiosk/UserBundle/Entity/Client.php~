@@ -54,4 +54,45 @@ class Client extends Personne
     {
         return $this->id;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add adress
+     *
+     * @param \Kiosk\UserBundle\Entity\Adresse $adress
+     *
+     * @return Client
+     */
+    public function addAdress(\Kiosk\UserBundle\Entity\Adresse $adress)
+    {
+        $this->adresses[] = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Remove adress
+     *
+     * @param \Kiosk\UserBundle\Entity\Adresse $adress
+     */
+    public function removeAdress(\Kiosk\UserBundle\Entity\Adresse $adress)
+    {
+        $this->adresses->removeElement($adress);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
+    }
 }

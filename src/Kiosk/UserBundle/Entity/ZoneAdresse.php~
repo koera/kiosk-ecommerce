@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ZoneAdresse
  *
- * @ORM\Table(name="zone_adresse")
+ * @ORM\Table(name="kiosk_zone_adresse")
  * @ORM\Entity(repositoryClass="Kiosk\UserBundle\Repository\ZoneAdresseRepository")
  */
 class ZoneAdresse
@@ -99,5 +99,46 @@ class ZoneAdresse
     public function getFraisLivraison()
     {
         return $this->fraisLivraison;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add adress
+     *
+     * @param \Kiosk\UserBundle\Entity\Adresse $adress
+     *
+     * @return ZoneAdresse
+     */
+    public function addAdress(\Kiosk\UserBundle\Entity\Adresse $adress)
+    {
+        $this->adresses[] = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Remove adress
+     *
+     * @param \Kiosk\UserBundle\Entity\Adresse $adress
+     */
+    public function removeAdress(\Kiosk\UserBundle\Entity\Adresse $adress)
+    {
+        $this->adresses->removeElement($adress);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
     }
 }
