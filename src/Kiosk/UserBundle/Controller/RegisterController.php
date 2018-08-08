@@ -81,8 +81,13 @@ class RegisterController extends BaseController
         if(!$user || (strtotime('now') > $user->getActivationTokenDelay())){
             return $this->renderJson(['message'=>'token not found']);
         }
+        if($user->getActive()){
+            return $this->renderJson(['message'=>'User already actived']);
+        }
 
         $user->setActive(true);
+        $em->persist($user);
+        $em->flush();
 
         return $this->renderJson(['user'=>$user,'message'=>'user activated']);
 
