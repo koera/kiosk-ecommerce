@@ -35,4 +35,21 @@ class BaseController extends Controller
         $this->container->get('mailer')->send($message);
     }
 
+
+    public function getToken($length = 32){
+        if (function_exists('openssl_random_pseudo_bytes'))
+        {
+            $bytes = openssl_random_pseudo_bytes($length * 2);
+
+            if ($bytes === false)
+            {
+                // throw exception that unable to create random token
+            }
+
+            return substr(str_replace(array('/', '+', '='), '', base64_encode($bytes)), 0, $length);
+        }
+
+        return ;
+    }
+
 }
